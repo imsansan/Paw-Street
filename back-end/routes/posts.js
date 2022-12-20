@@ -134,11 +134,9 @@ router.get("/:id", async (req, res) => {
       await client.set(postId, JSON.stringify(thePost));
     }
     res.status(200).json(thePost);
-    //console.log("checkSweetId")
   } catch (e) {
-    //console.log(e);
+    console.log(e);
     res.status(500).json({ message: e });
-
   }
 });
 
@@ -227,7 +225,6 @@ router.delete("/:postId/:commentId", async (req, res) => {
     }
     res.status(200).json(result);
   } catch (e) {
-
     console.log(e);
     res.status(500).json({ message: e });
   }

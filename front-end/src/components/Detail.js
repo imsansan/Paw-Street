@@ -305,7 +305,7 @@ export default function Detail() {
                               };
                               await axios
                                 .post(
-                                  `http://localhost:4000/posts/${originalData._id}/comment`,
+                                  `http://3.94.145.116:4000/posts/${originalData._id}/comment`,
                                   newComment
                                 )
                                 .then(function (response) {
@@ -321,7 +321,6 @@ export default function Detail() {
                               if (!e.message) alert(e);
                               else alert(e.message);
                             }
-
                           }}
                         >
                           Comment as {currentUser.displayName}

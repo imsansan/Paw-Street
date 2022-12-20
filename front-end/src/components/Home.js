@@ -133,7 +133,6 @@ export default function Home() {
     }
 
     fetchData();
-
   }, [pagenum, filter]);
 
   // useEffect(() => {

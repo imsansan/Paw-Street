@@ -19,7 +19,7 @@ export default function DeleteCommentModal(props) {
       alert("Deleted fail. You could not delete other users comment.");
     else {
       await axios
-        .delete(`http://localhost:4000/posts/${post._id}/${comment._id}`, {
+        .delete(`http://3.94.145.116:4000/posts/${post._id}/${comment._id}`, {
           headers: {
             token: currentUser.accessToken,
           },

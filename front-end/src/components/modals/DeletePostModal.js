@@ -19,8 +19,10 @@ function DeletePostModal(props) {
       .then(function (response) {
         if (response.data.deletedCount === 1) {
           alert("Successfully deleted!");
+          props.handleCloseWithYes();
         } else {
           alert("Deleted fail!");
+          props.handleCloseWithYes();
         }
       })
       .catch(function (error) {
@@ -28,7 +30,7 @@ function DeletePostModal(props) {
       });
     setShowDeletePostModal(false);
     setPost(null);
-    props.handleCloseWithYes();
+    //props.handleCloseWithYes();
   };
 
   const handleCloseDeleteModal = () => {

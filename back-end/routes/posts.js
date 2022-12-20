@@ -125,22 +125,22 @@ router.get("/:id", async (req, res) => {
   try {
     let postId = req.params.id;
     postId = checker.checkPostId(postId);
-    console.log("postId", postId);
+    //console.log("postId", postId);
     let exists = await client.exists(postId);
     var thePost = undefined;
-    console.log("route 1", exists, thePost);
+    //console.log("route 1", exists, thePost);
     if (exists) {
-      console.log(`Show posId ${postId} from Redis Cache.`);
+      //console.log(`Show posId ${postId} from Redis Cache.`);
       thePost = await JSON.parse(await client.get(postId));
     } else {
       //console.log(`posId ${postId} not in Redis.`);
       thePost = await posts.getPostById(postId);
       await client.set(postId, JSON.stringify(thePost));
     }
-    console.log("route thePost", thePost);
+    //console.log("route thePost", thePost);
     res.status(200).json(thePost);
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).json({ message: e });
   }
 });

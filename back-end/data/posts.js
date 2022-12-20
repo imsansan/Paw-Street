@@ -226,7 +226,7 @@ module.exports = {
 
   async getPostById(postId) {
     postId = checker.checkPostId(postId);
-    console.log("data".postId);
+    //console.log("data".postId);
     const postsCollection = await postsCollections();
     try {
       const thePost = await postsCollection.findOne({ _id: ObjectId(postId) });

@@ -125,6 +125,7 @@ router.get("/:id", async (req, res) => {
     postId = checker.checkPostId(postId);
     let exists = await client.exists(postId);
     var thePost = undefined;
+    console.log("route 1", exists, thePost);
     if (exists) {
       console.log(`Show posId ${postId} from Redis Cache.`);
       thePost = await JSON.parse(await client.get(postId));
@@ -133,6 +134,7 @@ router.get("/:id", async (req, res) => {
       thePost = await posts.getPostById(postId);
       await client.set(postId, JSON.stringify(thePost));
     }
+    console.log("route thePost", thePost);
     res.status(200).json(thePost);
   } catch (e) {
     console.log(e);

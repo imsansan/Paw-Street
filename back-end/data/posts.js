@@ -226,6 +226,7 @@ module.exports = {
 
   async getPostById(postId) {
     postId = checker.checkPostId(postId);
+    console.log("data".postId);
     const postsCollection = await postsCollections();
     try {
       const thePost = await postsCollection.findOne({ _id: ObjectId(postId) });
@@ -234,8 +235,6 @@ module.exports = {
     } catch (e) {
       //console.log(e);
       throw e;
-    } finally {
-      //await postsCollection.closeConnection();
     }
   },
 
@@ -323,7 +322,8 @@ module.exports = {
     token = checker.checkToken(token);
     let prevPost = await this.getPostById(postId);
     const verifyTokenResult = await auth.verifyIdToken(token);
-    if (verifyTokenResult.uid !== prevPost.userId) throw "uid no match, you can not delete other users post";
+    if (verifyTokenResult.uid !== prevPost.userId)
+      throw "uid no match, you can not delete other users post";
     const postsCollection = await postsCollections();
     try {
       const result = await postsCollection.deleteOne({ _id: ObjectId(postId) });

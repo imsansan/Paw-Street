@@ -20,7 +20,9 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 const redis = require("redis");
-const client = redis.createClient();
+var client = redis.createClient(6379, "elastichache endpoint string", {
+  no_ready_check: true,
+});
 client.connect().then(() => {});
 
 //get all posts
@@ -123,6 +125,7 @@ router.get("/:id", async (req, res) => {
   try {
     let postId = req.params.id;
     postId = checker.checkPostId(postId);
+    console.log("postId", postId);
     let exists = await client.exists(postId);
     var thePost = undefined;
     console.log("route 1", exists, thePost);
